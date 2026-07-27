@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { Crown, Store } from 'lucide-react'
 
 // --- DEFINIÇÃO DOS PLANOS ---
 const PLANOS_PADRAO = [
@@ -113,7 +112,7 @@ export default function PlanosPage() {
                 : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <Store className="size-5" />
+            <span className="text-xl">🏪</span>
             Anúncio Padrão
           </button>
           <button
@@ -124,7 +123,7 @@ export default function PlanosPage() {
                 : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
             }`}
           >
-            <Crown className="size-5" />
+            <span className="text-xl">👑</span>
             Destaque VIP Premium
           </button>
         </div>
@@ -138,7 +137,7 @@ export default function PlanosPage() {
            ) : (
              <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
                 <p className="text-sm font-bold text-amber-800 flex items-center justify-center gap-1 mb-1">
-                  <Crown className="size-4" /> Vantagem Exclusiva
+                  👑 Vantagem Exclusiva
                 </p>
                 <p className="text-xs text-amber-700">
                   O Plano VIP fixa seu anúncio no topo da página dentro do <strong>Carrossel de Destaques</strong>, além de também aparecer na grade principal.
