@@ -14,10 +14,10 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [vips, setVips] = useState<any[]>([])
   
-  // Referência para controlar o carrossel VIP pelo código
+  // Referencia para controlar o carrossel VIP pelo codigo
   const carouselRef = useRef<HTMLDivElement>(null)
 
-  // Busca os anúncios VIPs no banco
+  // Busca os anuncios VIPs no banco
   useEffect(() => {
     const carregarVips = async () => {
       const { data } = await supabase
@@ -51,7 +51,7 @@ export default function HomePage() {
     return () => clearInterval(interval)
   }, [vips])
 
-  // --- FUNÇÕES DE CONTROLE MANUAL DO CARROSSEL ---
+  // --- FUNCOES DE CONTROLE MANUAL DO CARROSSEL ---
   const rolarEsquerda = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -344, behavior: 'smooth' })
@@ -72,7 +72,7 @@ export default function HomePage() {
         {/* COMPONENTE HERO ORIGINAL */}
         <Hero query={searchQuery} onQueryChange={setSearchQuery} />
         
-        {/* BOTÃO ESTRATÉGICO DE CADASTRO */}
+        {/* BOTAO ESTRATEGICO DE CADASTRO */}
         <section className="w-full flex justify-center px-4 -mt-8 md:-mt-12 mb-10 relative z-10">
             <Link 
               href="/cadastro" 
@@ -92,7 +92,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h2 className="text-2xl font-serif font-bold text-slate-900">Destaques Premium</h2>
-                    <p className="text-sm text-slate-500">Recomendações exclusivas da vitrine</p>
+                    <p className="text-sm text-slate-500">Recomendacoes exclusivas da vitrine</p>
                   </div>
                </div>
                
@@ -147,7 +147,7 @@ export default function HomePage() {
                  <button 
                     onClick={rolarDireita}
                     className="absolute right-0 top-1/2 -translate-y-1/2 -mr-5 z-20 bg-white border border-amber-200 text-amber-600 p-3 rounded-full shadow-lg hover:bg-amber-50 transition-all opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center"
-                    aria-label="Próximo"
+                    aria-label="Proximo"
                  >
                     <ChevronRight className="size-6" />
                  </button>
@@ -166,11 +166,11 @@ export default function HomePage() {
             </span>
             
             <h2 className="text-balance font-serif text-2xl font-bold text-foreground md:text-3xl break-words w-full">
-              Divulgação simples, profissional e direta
+              Divulgacao simples, profissional e direta
             </h2>
             
             <p className="text-pretty leading-relaxed text-muted-foreground break-words w-full max-w-[100vw]">
-              A Vitrine E-books &amp; Cursos funciona como uma plataforma de exposição para autores e professores independentes que desejam destacar e vender seus produtos com mais visibilidade. Conheça as regras antes de publicar sua oferta.
+              A Vitrine E-books &amp; Cursos funciona como uma plataforma de exposicao para autores e professores independentes que desejam destacar e vender seus produtos com mais visibilidade. Conheca as regras antes de publicar sua oferta.
             </p>
             
             <Button variant="outline" nativeButton={false} render={<Link href="/termos" />}>
