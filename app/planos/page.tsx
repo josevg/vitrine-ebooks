@@ -4,20 +4,20 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 
-// --- DEFINIÇÃO DOS PLANOS ---
+// --- DEFINICAO DOS PLANOS ---
 const PLANOS_PADRAO = [
-  { id: 'padrao_1_mes', nome: '1 Mês', valor: 'R$ 19,90', detalhe: 'Plano inicial na vitrine' },
-  { id: 'padrao_2_meses', nome: '2 Meses', valor: 'R$ 37,90', detalhe: 'R$ 18,95 / mês' },
-  { id: 'padrao_3_meses', nome: '3 Meses', valor: 'R$ 54,90', detalhe: 'R$ 18,30 / mês' },
-  { id: 'padrao_6_meses', nome: '6 Meses', valor: 'R$ 99,90', detalhe: 'R$ 16,65 / mês', destaque: true },
-  { id: 'padrao_12_meses', nome: '12 Meses', valor: 'R$ 179,90', detalhe: 'R$ 14,99 / mês - Maior desconto' }
+  { id: 'padrao_1_mes', nome: '1 Mes', valor: 'R$ 19,90', detalhe: 'Plano inicial na vitrine' },
+  { id: 'padrao_2_meses', nome: '2 Meses', valor: 'R$ 37,90', detalhe: 'R$ 18,95 / mes' },
+  { id: 'padrao_3_meses', nome: '3 Meses', valor: 'R$ 54,90', detalhe: 'R$ 18,30 / mes' },
+  { id: 'padrao_6_meses', nome: '6 Meses', valor: 'R$ 99,90', detalhe: 'R$ 16,65 / mes', destaque: true },
+  { id: 'padrao_12_meses', nome: '12 Meses', valor: 'R$ 179,90', detalhe: 'R$ 14,99 / mes - Maior desconto' }
 ]
 
 const PLANOS_VIP = [
-  { id: 'vip_1_mes', nome: '1 Mês VIP', valor: 'R$ 49,90', detalhe: 'Carrossel + Vitrine' },
-  { id: 'vip_3_meses', nome: '3 Meses VIP', valor: 'R$ 129,90', detalhe: 'R$ 43,30 / mês' },
-  { id: 'vip_6_meses', nome: '6 Meses VIP', valor: 'R$ 239,90', detalhe: 'R$ 39,98 / mês', destaque: true },
-  { id: 'vip_12_meses', nome: '12 Meses VIP', valor: 'R$ 399,90', detalhe: 'R$ 33,32 / mês - Dominância Total' }
+  { id: 'vip_1_mes', nome: '1 Mes VIP', valor: 'R$ 49,90', detalhe: 'Carrossel + Vitrine' },
+  { id: 'vip_3_meses', nome: '3 Meses VIP', valor: 'R$ 129,90', detalhe: 'R$ 43,30 / mes' },
+  { id: 'vip_6_meses', nome: '6 Meses VIP', valor: 'R$ 239,90', detalhe: 'R$ 39,98 / mes', destaque: true },
+  { id: 'vip_12_meses', nome: '12 Meses VIP', valor: 'R$ 399,90', detalhe: 'R$ 33,32 / mes - Dominancia Total' }
 ]
 
 export default function PlanosPage() {
@@ -26,7 +26,7 @@ export default function PlanosPage() {
   const [anuncioId, setAnuncioId] = useState<string | null>(null)
   const [tituloOferta, setTituloOferta] = useState('')
   
-  // Controle de Abas e Seleção
+  // Controle de Abas e Selecao
   const [tipoPlano, setTipoPlano] = useState<'padrao' | 'vip'>('padrao')
   const [planoPadraoSelecionado, setPlanoPadraoSelecionado] = useState('padrao_6_meses')
   const [planoVipSelecionado, setPlanoVipSelecionado] = useState('vip_6_meses')
@@ -49,9 +49,9 @@ export default function PlanosPage() {
 
       if (data) {
         setAnuncioId(data.id)
-        setTituloOferta(data.titulo_ebook || 'Meu Anúncio')
+        setTituloOferta(data.titulo_ebook || 'Meu Anuncio')
       } else if (error) {
-        console.error("Erro ao buscar anúncio:", error)
+        console.error("Erro ao buscar anuncio:", error)
       }
     }
     carregarDados()
@@ -61,7 +61,7 @@ export default function PlanosPage() {
     setLoading(true)
 
     if (!anuncioId) {
-      alert("Erro: Não foi possível localizar seu anúncio recente. Tente novamente.")
+      alert("Erro: Nao foi possivel localizar seu anuncio recente. Tente novamente.")
       setLoading(false)
       return
     }
@@ -77,10 +77,10 @@ export default function PlanosPage() {
       .update({ plano_selecionado: planoFinalId })
       .eq('id', anuncioId)
     
-    // Texto Dinâmico para o WhatsApp
+    // Texto Dinamico para o WhatsApp
     const SEU_NUMERO_WHATSAPP = "5561982096982"
-    const tipoTexto = tipoPlano === 'vip' ? "👑 PLANO VIP PREMIUM" : "📦 PLANO PADRÃO"
-    const textoWhats = `Olá! Acabei de cadastrar minha oferta "${tituloOferta}".\n\nEscolhi o *${tipoTexto}* de *${planoEscolhido?.nome}* no valor de *${planoEscolhido?.valor}*.\n\nComo faço o pagamento para ativar meu anúncio?`
+    const tipoTexto = tipoPlano === 'vip' ? "👑 PLANO VIP PREMIUM" : "📦 PLANO PADRAO"
+    const textoWhats = `Ola! Acabei de cadastrar minha oferta "${tituloOferta}".\n\nEscolhi o *${tipoTexto}* de *${planoEscolhido?.nome}* no valor de *${planoEscolhido?.valor}*.\n\nComo faco o pagamento para ativar meu anuncio?`
     
     window.location.href = `https://wa.me/${SEU_NUMERO_WHATSAPP}?text=${encodeURIComponent(textoWhats)}`
   }
@@ -94,11 +94,11 @@ export default function PlanosPage() {
     <div className="min-h-screen bg-slate-50 py-12 px-4 flex justify-center items-start">
       <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
         
-        {/* CABEÇALHO */}
+        {/* CABECALHO */}
         <div className={`p-8 text-center transition-colors duration-500 ${tipoPlano === 'vip' ? 'bg-amber-600' : 'bg-emerald-700'}`}>
           <h1 className="text-3xl font-serif font-bold text-white">Escolha seu Plano</h1>
           <p className={tipoPlano === 'vip' ? 'text-amber-100' : 'text-emerald-100'}>
-            Selecione a melhor estratégia de visibilidade para o seu produto.
+            Selecione a melhor estrategia de visibilidade para o seu produto.
           </p>
         </div>
 
@@ -113,7 +113,7 @@ export default function PlanosPage() {
             }`}
           >
             <span className="text-xl">🏪</span>
-            Anúncio Padrão
+            Anuncio Padrao
           </button>
           <button
             onClick={() => setTipoPlano('vip')}
@@ -132,7 +132,7 @@ export default function PlanosPage() {
         <div className="px-8 pt-6 pb-2">
            {tipoPlano === 'padrao' ? (
              <p className="text-sm text-slate-600 text-center">
-               O Plano Padrão exibe seu e-book na grade principal da nossa vitrine, organizado por ordem de chegada.
+               O Plano Padrao exibe seu e-book na grade principal da nossa vitrine, organizado por ordem de chegada.
              </p>
            ) : (
              <div className="bg-amber-50 border border-amber-200 p-4 rounded-xl text-center">
@@ -140,7 +140,7 @@ export default function PlanosPage() {
                   👑 Vantagem Exclusiva
                 </p>
                 <p className="text-xs text-amber-700">
-                  O Plano VIP fixa seu anúncio no topo da página dentro do <strong>Carrossel de Destaques</strong>, além de também aparecer na grade principal.
+                  O Plano VIP fixa seu anuncio no topo da pagina dentro do <strong>Carrossel de Destaques</strong>, alem de tambem aparecer na grade principal.
                 </p>
              </div>
            )}
@@ -188,7 +188,7 @@ export default function PlanosPage() {
             ))}
           </div>
 
-          {/* BOTÃO DE FINALIZAR */}
+          {/* BOTAO DE FINALIZAR */}
           <div className="pt-4 border-t border-slate-100">
             <button 
               onClick={handleFinalizar}
@@ -200,7 +200,7 @@ export default function PlanosPage() {
               {loading ? 'Processando...' : 'Finalizar e Ativar Plano'}
             </button>
             <p className="text-sm text-center text-slate-500 mt-4">
-              Ao clicar, você será direcionado ao nosso atendimento seguro pelo WhatsApp para concluir a ativação.
+              Ao clicar, voce sera direcionado ao nosso atendimento seguro pelo WhatsApp para concluir a ativacao.
             </p>
           </div>
         </div>
